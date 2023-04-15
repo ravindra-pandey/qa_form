@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+{% block content %}
+{% for qa in qa_set %}
+    
+<div class="card">
+    <h2>{{ qa["question"]["question"] }}</h2>
+    <div class="home_answer">
+    {% for answer in qa["answers"] %}
+            {% for ans in answer["answers"]["ans1"] %}
+                {% if ans=="answer" %}
+                <p>{{ answer["answers"]["ans1"][ans] }}</p>
+                
+                {% elif ans=="by" %}
+                <small>by: {{ answer["answers"]["ans1"][ans] }}</small>
+                {{ else }}
+                <small>time: {{ answer["answers"]["ans1"][ans] }}</small>
+
+                {% endif %}
+            {% endfor %}
+
+    {% endfor %}
+</div>
+<a href="/login">Read More</a>
+</div>
+{% endfor %}
+{% endblock %}

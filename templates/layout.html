@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="nav_links">
+        <a class="active" href="/">Home</a>
+        <a href="/login">Sign Up</a>
+        <a href="/login">Login</a>
+        <a href="/ask_me">Ask Us..</a>
+        </div>
+        <div class="search-container">
+            <form>
+                <input type="text" placeholder="Search...">
+                <button type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+    <div class="content">
+
+        {% block content %}
+        
+        {% endblock %}
+    
+    </div>
+</body>
+
+</html>
