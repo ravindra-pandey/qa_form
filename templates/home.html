@@ -1,7 +1,9 @@
 {% extends 'layout.html' %}
 {% block content %}
+{% if show %}
+    <h3>welcom{{ usr }}</h3>
+{% endif %}
 {% for qa in qa_set %}
-    
 <div class="card">
     <h2>{{ qa["question"]["question"] }}</h2>
     <div class="home_answer">

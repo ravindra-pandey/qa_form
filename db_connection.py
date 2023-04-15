@@ -1,10 +1,9 @@
 """
 importing all the necessary libraries
 """
+from os import error
 import time
 from pymongo import MongoClient
-from pymongo.errors import PyMongoError
-
 
 class DatabaseOperations():
 
@@ -85,8 +84,6 @@ class DatabaseOperations():
         prepared_question = self.prepare_question(idx, question, user_id)
         self.database.questions.insert_one(prepared_question)
 
-    # feed_question("this is 3rd ques","user2")
-
     def feed_answer(self, q_id, answer, user_id):
         """
         feed_answer
@@ -123,7 +120,58 @@ class DatabaseOperations():
         """
         self.database.questions.find({"question": question, "by": user_id})
 
+    def create_user(self,name,email,password,confirm_password):
+        """
+        This function is called when the user is signinup.
+        """
+        error=self.validate_signup_credentials(name,email,password,confirm_password)
+        if error is None:
+            
+            try:
+                u_id=list(self.database.users.find().sort("_id"))[-1]["_id"]
+                u_id+=1
+            except:
+                u_id=1
+            self.database.users.insert_one({"_id": u_id,"name":name, "email":email, "password":password})
+            return ""
+        return error
 
-# db_operations = DatabaseOperations("mongodb://localhost:27017")
+    def validate_signup_credentials(self,name,email,password,confirm_password):
+        """
+        This function is responsible for checking if the user is signed up. or any error in the data.
+        """
+        match=list(self.database.users.find({"email":email}))
+    
+        if len(match)>0:
+            error="email already exists"
+            return error
+        if name=="" or name==" ":
+            error = "Please enter your name"
+            return error
+        
+        if len(password)<6:
+            error="password must be at least 6 characters"
+            return error
+        if password !=confirm_password :
+            error="passwords do not match"
+            return error
+        return None
 
-# print(db_operations.get_question_answer_set())
+    def validate_login_credentials(self,email,password):
+        """This function is used to validate the login credentials"""
+        match=self.database.users.find({"email":email})
+        try:
+            if match[0]["password"]==password:
+                return True,match[0]["name"]
+            else:
+                return False,"password mismatch"
+        except:
+            error="email not found"
+            pass
+            return False,error
+        
+# URL = "mongodb://localhost:27017"
+
+# db_operations=DatabaseOperations(URL)
+
+# db_operations.validate_login_credentials("gautammeena@gmail.com","415")
