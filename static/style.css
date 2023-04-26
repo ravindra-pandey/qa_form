@@ -191,6 +191,13 @@
         margin: 20px;
         min-width: 65%;
         max-width: 95%;
-        height: 400px;
-        transform: translateY(10%);
+        height: fit-content;
+        left: 50%;
+        
+        /* transform: translateY(10%); */
+    }
+    .login_signup_form form input{
+        width: 95%;
+        height: 25px;
+        background-color: #fff;
     }
