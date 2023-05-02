@@ -2,7 +2,7 @@
 importing all the necessary libraries
 """
 import time
-from pymongo import MongoClientgi
+from pymongo import MongoClient
 
 class DatabaseOperations():
 
