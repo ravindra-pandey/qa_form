@@ -3,6 +3,7 @@
 {% if show %}
     <h3>welcom{{ usr }}</h3>
 {% endif %}
+<div class="main_card">
 {% for qa in qa_set %}
 <div class="card">
     <h2>{{ qa["question"]["question"] }}</h2>
@@ -22,7 +23,8 @@
 
     {% endfor %}
 </div>
-<a href="/login">Read More</a>
+<a href="/answers?{{ qa['question']['_id'] }}" >Read More</a>
 </div>
 {% endfor %}
+</div>
 {% endblock %}

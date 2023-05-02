@@ -1,6 +1,7 @@
 *{
     margin: 0;
     padding: 0;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 
 }
 .navbar {
@@ -9,6 +10,7 @@
     width: 100%;
     height: 6%;
     display: flex;
+    top:0;
     align-items: center;
     justify-content: space-between;
     z-index: 1;
@@ -30,6 +32,7 @@
 
 .navbar .nav_links a:hover {
     background-color: #ddd;
+    height: 6%;
     color: black;
 }
 
@@ -77,43 +80,56 @@
     background: #ccc;
 }
 
-@media screen and (max-width: 600px) {
-    .search-container {
-        font-size: 10px;
-    }
+@media screen and (max-width: 700px) {
 
     .navbar{
-        position: relative;
+        font-size: 13px;
+        height: 6%;
+        position: fixed;
         width: 100%;
-        height: 10%;
+        /* height: 10%; */
+        top:0;
         display: flex;
         flex-direction: row;
     }
     .navbar a{
-        width: 15;
+        width: 10;
     }
     .search-container {
-        float: none;
+        float: right;
         display: flex;
         text-align: left;
+        justify-content: space-around;
+        /* width: 25%; */
+        
     }
 
     .navbar input[type="text"] {
-        width: 100%;
-        margin-bottom: 12px;
+        width: 50%;
+        /* margin-bottom: 12px; */
+    }
+
+    .navbar .nav_links a {
+        height: 100%;
     }
 }
-
 .content{
+width: 100%;
+height: 100vh;
+position: relative;
+display: flex;
+justify-content: center;
+align-items: center;
+top: 70px;
+}
+
+.content .main_card {
     position: relative;
-    min-width: 400px;
-    max-width: 700px;
+    width: 90%;
     height: 100vh;
-    left: 25%;
     transform: translatex(-50%, 50%);
     display: grid;
-  grid-template-columns: 1fr 1fr;
-
+    grid-template-columns: 1fr;
     justify-content: center;
     align-items: center;
     overflow:scroll;
@@ -121,7 +137,7 @@
     scrollbar-width: none;
 }
 
-.content::-webkit-scrollbar{
+.content .main_card::-webkit-scrollbar{
     display: None;
 }
 .card {
@@ -131,10 +147,8 @@
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.15);
     padding: 20px;
     margin: 20px;
-    min-width: 75%;
     height: 200px;
     transform: translateX(-50%, -50%);
-    transform: translateY(30%);
     overflow: hidden;
   }
   
@@ -174,12 +188,13 @@
         min-width: 65%;
         max-width: 95%;
         height: 200px;
-        transform: translateY(30%);
+        /* transform: translateY(30%); */
     }
-    .ask_something form{
+    .ask_something form textarea{
         display: inline-flex;
         justify-content: space-around;
         width: 100%;
+        height: 150px
     }
     
     .login_signup_form{
@@ -189,15 +204,74 @@
         box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.15);
         padding: 20px;
         margin: 20px;
-        min-width: 65%;
+        min-width: 55%;
         max-width: 95%;
-        height: fit-content;
-        left: 50%;
+        height: 30%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
         
         /* transform: translateY(10%); */
+    }
+    .login_signup_form form p{
+        padding: 5px;
     }
     .login_signup_form form input{
         width: 95%;
         height: 25px;
         background-color: #fff;
     }
+
+    .temp_card{
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .temp_card .q_div{
+        width: 80%;
+        height: 25px;
+        color: #333;
+        margin: 15px;
+        padding: 25px;
+        border-left:solid #9c9797 ;
+    }
+
+    .temp_card .temp_ans_card{
+        width: 80%;
+        height: 200px;
+        color: #333;
+        margin: 10px;
+        background-color: #e6e7e5;
+        padding: 25px;
+    }
+
+    .temp_card .feed_answer{
+        width: 100%;
+        height: 60px;
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        justify-content: space-around;
+        padding: 10px;
+        background-color: #333;
+    }
+    .temp_card .feed_answer form{
+        width: 85%;
+        height: 80%;
+        display: flex;
+        justify-content: space-around;
+
+    }
+    .temp_card .feed_answer form textarea{
+        width: 70%;
+    }
+    .temp_card .feed_answer form button{
+        width: 20%;
+        
+    }
+
+

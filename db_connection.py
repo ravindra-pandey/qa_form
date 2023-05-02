@@ -1,9 +1,8 @@
 """
 importing all the necessary libraries
 """
-from os import error
 import time
-from pymongo import MongoClient
+from pymongo import MongoClientgi
 
 class DatabaseOperations():
 
@@ -23,7 +22,12 @@ class DatabaseOperations():
     def get_all_answers(self, q_id):
         """Returns all answers in the database"""
         return list(self.database.answers.find({"_id": q_id}))
-
+    def get_qa_by_id(self, q_id):
+        """Returns the question associated with the given id"""
+        question=list(self.database.questions.find({"_id": q_id}))
+        answers=self.get_all_answers(q_id)
+        return question,answers
+        
     def get_question_answer_set(self):
         """Returns all questions in the database with corresponding answers"""
         question_answers = []

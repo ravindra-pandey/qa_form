@@ -75,6 +75,17 @@ def ask_me():
         db_operations.feed_question(question,user_id)
     return render_template("ask_me.html")
 
+@app.route("/answers")
+def temp_answers():
+    """
+    this method is called when the user is going to see all the answers of any question.
+    """
+    q_id=int(list(request.args)[0])
+    ques,ans=db_operations.get_qa_by_id(q_id)
+    if len(ques)==0:
+        ques=""
+    return render_template("temp.html",ques=ques,ans=ans)
+
 @app.route("/logout")
 def logout():
     session.pop("user", None)

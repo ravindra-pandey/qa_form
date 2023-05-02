@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <div class="temp_card">
+    <div class="q_div">
+    <h3>{{ ques[0]["question"] }}</h3>
+    </div>
+    {% if answer!="" %}
+    {% for answer in ans[0]["answers"].values() %}
+            
+        <div class="temp_ans_card">
+            <p class="temp_ans">{{ answer["answer"] }}</p>
+            <b>
+                <small>at: {{ answer["time"] }}</small>
+                <small>by: {{ answer["by"] }}</small>
+            </b>
+        </div>
+        {% endfor %}
+    {% endif %}
+    <div class="feed_answer">
+        <form action="#" method="POST">
+            <textarea type="text" name="feed_ans" placeholder="Enter your answer here...."></textarea>
+            <button class="sub_button"><i class="fa fa-send"></i><br><small>submit</small></button>
+        </form>
+    </div>    
+</div>
+
+{% endblock %}
