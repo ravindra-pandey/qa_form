@@ -266,7 +266,7 @@ top: 70px;
         justify-content: space-around;
 
     }
-    .temp_card .feed_answer form textarea{
+    .temp_card .feed_answer form input{
         width: 70%;
     }
     .temp_card .feed_answer form button{

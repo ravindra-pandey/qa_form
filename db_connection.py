@@ -129,6 +129,7 @@ class DatabaseOperations():
         This function is called when the user is signinup.
         """
         error=self.validate_signup_credentials(name,email,password,confirm_password)
+        print(error)
         if error is None:
             
             try:
@@ -166,13 +167,13 @@ class DatabaseOperations():
         match=self.database.users.find({"email":email})
         try:
             if match[0]["password"]==password:
-                return True,match[0]["name"]
+                return True,match[0]["name"],match[0]["_id"]
             else:
-                return False,"password mismatch"
+                return False,"password mismatch",None
         except:
             error="email not found"
             pass
-            return False,error
+            return False,error,None
         
 # URL = "mongodb://localhost:27017"
 
