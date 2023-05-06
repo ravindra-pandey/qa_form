@@ -1,5 +1,8 @@
+"""
+importing all the necessary modules
+"""
 from flask import Flask, render_template, url_for, redirect, request,session
-from matplotlib.widgets import EllipseSelector
+
 import db_connection
 
 app = Flask(__name__)
@@ -61,6 +64,7 @@ def signup() :
 
 @app.route("/user")
 def user():
+    """sessions"""
     if "user_name" in session:
         user=session["user_name"]
         return render_template("home.html",usr=user,show=True)
@@ -104,6 +108,7 @@ def temp_answers():
 
 @app.route("/logout")
 def logout():
+    """Log out the user """
     session.pop("user_name", None)
     session.pop("user_id", None)
     return redirect(url_for("login"))
